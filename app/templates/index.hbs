@@ -1,1 +1,18 @@
+<div id="piano">
+    <ol>
+      {{#each oscillators as |note|}}
+        <li class={{if note.accidental 'black'}}
+          {{!-- These are to make it play like a "keyboard" on touch devices
+            and I'm sure there's a more elegant way to handle it ¯\_(ツ)_/¯ --}}
+          {{action 'startNote' note on='touchStart'}}
+          {{action 'startNote' note on='mouseDown'}}
+          {{action 'stopNote' note on='touchEnd'}}
+          {{action 'stopNote' note on='mouseUp'}}
+          {{action 'stopNote' note on='mouseLeave'}}>
+          {{note.name}}
+        </li>
+      {{/each}}
+    </ol>
+  </div>
+
 {{outlet}}
